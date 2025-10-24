@@ -1,5 +1,7 @@
 package com.estudo_raul.java.business;
 
+import com.estudo_raul.java.business.converter.UsuarioConverter;
+import com.estudo_raul.java.business.dtos.UsuarioDTO;
 import com.estudo_raul.java.infrastructure.entity.Usuario;
 import com.estudo_raul.java.infrastructure.exceptions.ConflictException;
 import com.estudo_raul.java.infrastructure.repository.UsuarioRepository;
@@ -15,6 +17,7 @@ import java.util.ConcurrentModificationException;
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
+    private final UsuarioConverter usuarioConverter;
     private final PasswordEncoder passwordEncoder;
 
 
@@ -41,6 +44,12 @@ public class UsuarioService {
 
     public boolean verificaEmailExistente(String email){
         return usuarioRepository.existsByEmail(email);
+    }
+
+    public UsuarioDTO salvaUsuario(UsuarioDTO usuarioDTO){
+        Usuario usuario = usuarioConverter.paraUsuario(usuarioDTO);
+        return usuarioConverter.paraUsuarioDTO(
+                usuarioRepository.save(usuario));
     }
 
 }
