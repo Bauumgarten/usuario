@@ -1,7 +1,7 @@
 package com.estudo_raul.java.controller;
 
 import com.estudo_raul.java.business.UsuarioService;
-import com.estudo_raul.java.controller.dtos.UsuarioDTO;
+import com.estudo_raul.java.business.dtos.UsuarioDTO;
 import com.estudo_raul.java.infrastructure.entity.Usuario;
 import com.estudo_raul.java.infrastructure.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +40,9 @@ public class UsuarioController {
         return "Bearer " + jwtUtil.generateToken(authentication.getName());
     }
 
-
+    @PostMapping
+    public ResponseEntity <UsuarioDTO> salvaUsuario(@RequestBody UsuarioDTO usuarioDTO){
+        return ResponseEntity.ok(usuarioService.salvaUsuario(usuarioDTO));
+    }
 
 }
