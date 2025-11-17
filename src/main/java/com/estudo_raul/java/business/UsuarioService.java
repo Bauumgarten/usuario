@@ -4,13 +4,12 @@ import com.estudo_raul.java.business.converter.UsuarioConverter;
 import com.estudo_raul.java.business.dtos.UsuarioDTO;
 import com.estudo_raul.java.infrastructure.entity.Usuario;
 import com.estudo_raul.java.infrastructure.exceptions.ConflictException;
+import com.estudo_raul.java.infrastructure.exceptions.ResourceNotFoundException;
 import com.estudo_raul.java.infrastructure.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.context.config.ConfigDataException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ConcurrentModificationException;
 
 @Service
 @RequiredArgsConstructor
@@ -52,4 +51,11 @@ public class UsuarioService {
                 usuarioRepository.save(usuario));
     }
 
+    public Usuario buscarUsuarioPorEmail(String email){
+        return usuarioRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Email não encontrado" + email));
+    }
+
+    public void  deleteUsuarioPorEmail (String email){
+        usuarioRepository.deleteByEmail(email);
+    }
 }
