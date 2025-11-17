@@ -1,4 +1,9 @@
 package com.estudo_raul.java.infrastructure.repository;
 
-public interface EnderecoRepository {
+import com.estudo_raul.java.infrastructure.entity.Endereco;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
 }
