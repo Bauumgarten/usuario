@@ -1,6 +1,8 @@
 package com.estudo_raul.java.controller;
 
 import com.estudo_raul.java.business.UsuarioService;
+import com.estudo_raul.java.business.dtos.EnderecoDTO;
+import com.estudo_raul.java.business.dtos.TelefoneDTO;
 import com.estudo_raul.java.business.dtos.UsuarioDTO;
 import com.estudo_raul.java.infrastructure.entity.Usuario;
 import com.estudo_raul.java.infrastructure.security.JwtUtil;
@@ -10,6 +12,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/usuario")
@@ -21,7 +24,7 @@ public class UsuarioController {
     private final JwtUtil jwtUtil;
 
 
-   /** @PostMapping
+  /**  @PostMapping
     public ResponseEntity <Usuario> salvaUsuario(@RequestBody Usuario usuario){
         return ResponseEntity.ok(usuarioService.salvaUsuario(usuario));
     }**/
@@ -45,8 +48,18 @@ public class UsuarioController {
     @PutMapping
     public ResponseEntity<UsuarioDTO> atualizaDadoUsuario(@RequestBody UsuarioDTO dto,
                                                           @RequestHeader("Authorization") String token){
-
         return ResponseEntity.ok(usuarioService.atualizaDadosUsuario(token, dto));
     }
 
+    @PutMapping("/telefone")
+    public ResponseEntity<TelefoneDTO> atualizaTelefone(@RequestBody TelefoneDTO dto,
+                                                        @RequestParam("id") Long id){
+        return ResponseEntity.ok(usuarioService.atualizaTelefone(id, dto));
+    }
+
+    @PutMapping("/endereco")
+    public ResponseEntity<EnderecoDTO> atualizaEndereco(@RequestBody EnderecoDTO dto,
+                                                     @RequestParam("id") Long id){
+        return ResponseEntity.ok(usuarioService.atualizaEndereco(id, dto));
+    }
 }
