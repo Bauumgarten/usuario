@@ -24,9 +24,9 @@ public class UsuarioController {
     private final JwtUtil jwtUtil;
 
 
-  /**  @PostMapping
+    /** @PostMapping
     public ResponseEntity <Usuario> salvaUsuario(@RequestBody Usuario usuario){
-        return ResponseEntity.ok(usuarioService.salvaUsuario(usuario));
+    return ResponseEntity.ok(usuarioService.salvaUsuario(usuario));
     }**/
 
     @PostMapping("/login")
@@ -47,8 +47,8 @@ public class UsuarioController {
 
     @DeleteMapping("/{email}")
     public ResponseEntity<Void> deletaUsuarioPorEmail (@PathVariable String email){
-       usuarioService.deletaUsuarioPorEmail(email);
-     return ResponseEntity.ok().build();
+        usuarioService.deletaUsuarioPorEmail(email);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping
@@ -70,7 +70,7 @@ public class UsuarioController {
 
     @PutMapping("/endereco")
     public ResponseEntity<EnderecoDTO> atualizaEndereco(@RequestBody EnderecoDTO dto,
-                                                     @RequestParam("id") Long id){
+                                                        @RequestParam("id") Long id){
         return ResponseEntity.ok(usuarioService.atualizaEndereco(id, dto));
     }
 
