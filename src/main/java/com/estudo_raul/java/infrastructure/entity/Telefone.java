@@ -22,4 +22,6 @@ public class Telefone {
     private String ddd;
     @Column(name = "tipo", length = 10)
     private String tipo; // Exemplo: "celular", "fixo".
+    @Column(name = "usuario_id")
+    private Long usuario_id;
 }
