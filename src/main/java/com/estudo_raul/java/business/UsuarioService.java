@@ -160,6 +160,4 @@ public class UsuarioService {
         Telefone telefone = usuarioConverter.paraTelefoneEntity(dto, usuario.getId());
         return usuarioConverter.paraTelefoneDTO(telefoneRepository.save(telefone));
     }
-
-
 }
